@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Vector2 moveDir;
+    private float moveSpeed;
 
-    // Update is called once per frame
+    public SpriteRenderer sr;
+
     void Update()
     {
-        
+        transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+
+        if (transform.position.y < -6f)
+            Destroy(gameObject);
+    }
+
+    public void Init(Vector2 dir, float speed, Sprite sprite)
+    {
+        moveDir = dir.normalized;
+        moveSpeed = speed;
+        sr.sprite = sprite;
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    public float scrollSpeed = 5f;
-    public float resetY = 12f;     
+    public float scrollSpeed;
+    public float resetY;     
     public Transform[] Backgrounds;  
 
     void Update()

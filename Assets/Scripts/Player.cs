@@ -26,4 +26,13 @@ public class Player : MonoBehaviour
         float clampedY = Mathf.Clamp(transform.position.y, -4.5f, 4.5f);
         transform.position = new Vector3(clampedX, clampedY, 0f);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Asteroid"))
+        {
+            GameManager.Instance.GameOver();
+            Destroy(gameObject);
+        }
+    }
 }
