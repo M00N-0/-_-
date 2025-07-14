@@ -10,15 +10,15 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Text distanceText;
-    private float distance;
+    public float distance;
+    public static float lastDistance;
     private bool isDead = false;
 
     public Background background;
 
     void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (Instance == null) Instance = this;
     }
     void Update()
     {
@@ -31,6 +31,17 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isDead = true;
+
+        lastDistance = distance;
+
+        int best = PlayerPrefs.GetInt("BestDistance", 0);
+        int current = Mathf.FloorToInt(distance);
+        if (current > best)
+        {
+            PlayerPrefs.SetInt("BestDistance", current);
+            PlayerPrefs.Save();
+        }
+
         SceneManager.LoadScene("GameOverScene");
     }
 }
