@@ -17,11 +17,11 @@ public class AsteroidSpawner : MonoBehaviour
         new Vector2(0.5f, -1f).normalized
     };
 
-    private float[] speeds = { 1f, 2.5f, 4f, 5.5f };
+    private float[] speeds = { 1f, 2.5f, 4f, 7f };
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnAsteroid), 1f, 0.7f); 
+        InvokeRepeating(nameof(SpawnAsteroid), 1f, 0.6f); 
     }
 
     void SpawnAsteroid()

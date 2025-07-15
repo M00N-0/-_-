@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
@@ -12,14 +13,14 @@ public class GameOverUI : MonoBehaviour
     void Start()
     {
         int current = Mathf.FloorToInt(GameManager.lastDistance);
-        currentScoreText.text = "Current: " + current + "M";
+        currentScoreText.text = current + "M";
 
         int best = PlayerPrefs.GetInt("BestDistance", 0);
         bestScoreText.text = "Best: " + best + "M";
     }
-
-    public void OnRestartButton()
+    void Update()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        if (Input.GetKeyDown(KeyCode.Space)) 
+            SceneManager.LoadScene("Main");
     }
 }
